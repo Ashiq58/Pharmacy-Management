@@ -1,6 +1,7 @@
 import { createApp } from 'vue'
 
 import App from './App.vue'
+import mitt from 'mitt'
 
 import "./assets/css/ayoflex.css";
 // import "ayoflex/dist/ayoflex.min.css";
@@ -12,4 +13,8 @@ import "./assets/css/example.css";
 // import "./assets/js/jquery-3.7.1.min.js"
 // import "./assets/js/bootstrap.bundle.js"
 
-createApp(App).mount('#app')
+
+let eventBus = mitt();
+const app= createApp(App);
+app.config.globalProperties.$eventBus = eventBus;
+app.mount('#app');

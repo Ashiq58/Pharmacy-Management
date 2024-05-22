@@ -86,9 +86,12 @@ export default {
       if (this.formData.password.length < 6) {
         // alert("Password must be at least 6 characters long!");
         // TODO: show error message on toast
-        showErrorMessage("Password must be at least 6 characters long!");
+        // showErrorMessage("Password must be at least 6 characters long!");
         this.$refs.password.focus();
-
+        this.$eventBus.emit('toast', { 
+          type:"Error",
+          message:"Password must be at least 6 characters long!"
+        })
         return;
       }
 

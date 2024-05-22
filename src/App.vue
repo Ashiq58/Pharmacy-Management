@@ -1,7 +1,9 @@
 <template>
   <LoginPanel></LoginPanel>
 <div class="toasts">
-  <TheToast></TheToast>
+  <TheToast v-for="(toast,i) in toasts" :key="i" :toastType="toast.type" :message="toast.message">
+
+  </TheToast>
 </div>
 </template>
 
@@ -21,6 +23,11 @@ export default {
       // }
     ]
   }),
+  mounted() {
+    this.$eventBus.on("toast", (data) => {
+      this.toasts.push(data)
+    });
+  },
   components: {
     LoginPanel,
     TheToast
